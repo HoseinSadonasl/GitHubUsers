@@ -10,6 +10,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.serialization.kotlinx.json.json
+import ir.hoseinsa.githubusers.data.api.UsersApi
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
@@ -29,4 +30,5 @@ val dataModule = module {
             }
         }
     }
+    single<UsersApi> { UsersApi(get()) }
 }
