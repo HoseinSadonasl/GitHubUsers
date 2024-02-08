@@ -1,5 +1,6 @@
 package ir.hoseinsa.githubusers.data.repository
 
+import android.util.Log
 import io.ktor.client.call.body
 import ir.hoseinsa.githubusers.data.api.UsersApi
 import ir.hoseinsa.githubusers.domain.models.user.UserItem
@@ -11,15 +12,14 @@ import kotlinx.coroutines.flow.flow
 
 class UserRepositoryImpl(val api: UsersApi) : UsersRepository {
 
-    override suspend fun getUsers(): Flow<DataState> = flow {
-        emit(DataState.Loading)
+    override suspend fun getUsers(): Flow<DataState<List<UserPresenter>>> = flow {
         try {
             val data = api.getUsers().body<List<UserItem>>()
             val presenterData = getUsersPresenter(data)
             emit(DataState.Success(presenterData))
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(DataState.Error(e.message))
+            emit(DataState.Error(e.message ?: "Unknown error"))
         }
     }
 

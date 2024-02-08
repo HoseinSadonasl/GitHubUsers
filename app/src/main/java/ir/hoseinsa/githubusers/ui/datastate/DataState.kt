@@ -2,10 +2,8 @@ package ir.hoseinsa.githubusers.ui.datastate
 
 import ir.hoseinsa.githubusers.domain.models.user.UserItem
 
-sealed class DataState {
-    data object Idle : DataState()
-    data object Loading : DataState()
-    data class Success<T>(val data: T?) : DataState()
-    data class Error<T>(val error: T) : DataState()
+sealed class DataState<T>(val data: T? = null, val message: String? = null) {
+    class Success<T>(data: T?) : DataState<T>(data = data)
+    class Error<T>(message: String, data: T? = null) : DataState<T>(data, message)
 
 }

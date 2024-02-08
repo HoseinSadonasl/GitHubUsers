@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.flow
 
 interface UsersRepository {
 
-    suspend fun getUsers(): Flow<DataState>
+    suspend fun getUsers(): Flow<DataState<List<UserPresenter>>>
 
 }
