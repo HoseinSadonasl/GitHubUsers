@@ -26,7 +26,7 @@ fun ItemOptionComponent(
     modifier: Modifier = Modifier,
     icon: Int,
     text: String,
-    textStyle: TextStyle = TextStyle()
+    textStyle: TextStyle = TextStyle(),
 ) {
     Row(
         modifier = modifier,
@@ -36,19 +36,5 @@ fun ItemOptionComponent(
             painter = painterResource(id = icon),
             contentDescription = null)
         Text(text = text, style = textStyle)
-    }
-}
-@Preview(showBackground = true)
-@Composable
-fun ItemOptionComponent(
-) {
-    Row(
-        modifier = Modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            painter = painterResource(id = R.drawable.all_github),
-            contentDescription = null)
-        Text(modifier = Modifier.padding(8.dp), text = "text", style = MaterialTheme.typography.labelMedium)
     }
 }

@@ -39,10 +39,7 @@ fun UserItemComponent(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-            .background(Color.White)
             .padding(8.dp),
-
     ) {
         CircularImageComponent(
             modifier = Modifier
@@ -57,8 +54,6 @@ fun UserItemComponent(
             ) {
             Column() {
                 Text(text = userPresenter.login, style = MaterialTheme.typography.bodyMedium)
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(text = userPresenter.type, style = MaterialTheme.typography.bodySmall)
             }
             ItemOptionComponent(modifier = Modifier.height(24.dp), icon = R.drawable.all_github, text = "18" , textStyle = MaterialTheme.typography.labelSmall)
         }
