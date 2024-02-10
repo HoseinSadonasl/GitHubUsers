@@ -3,6 +3,7 @@ package ir.hoseinsa.githubusers.data.repository
 import android.util.Log
 import io.ktor.client.call.body
 import ir.hoseinsa.githubusers.data.api.UsersApi
+import ir.hoseinsa.githubusers.data.mapper.toUserPresenter
 import ir.hoseinsa.githubusers.domain.models.user.UserItem
 import ir.hoseinsa.githubusers.domain.models.user.UserPresenter
 import ir.hoseinsa.githubusers.domain.repository.UsersRepository
