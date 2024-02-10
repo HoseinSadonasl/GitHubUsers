@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.data
+package ir.hoseinsa.githubusers.data.remote
 
 object UsersEndpoints {
 

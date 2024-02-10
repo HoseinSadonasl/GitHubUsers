@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.ui.screens.users
+package ir.hoseinsa.githubusers.presenter.users
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ir.hoseinsa.githubusers.ui.components.UserItemComponent
+import ir.hoseinsa.githubusers.presenter.components.UserItemComponent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

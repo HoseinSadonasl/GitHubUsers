@@ -1,2 +1,2 @@
-package ir.hoseinsa.githubusers.ui.intent
+package ir.hoseinsa.githubusers.presenter.intent
 sealed class  DataIntent { data object GetUsers : DataIntent() }

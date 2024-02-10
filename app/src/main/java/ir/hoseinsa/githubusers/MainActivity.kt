@@ -21,7 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import ir.hoseinsa.githubusers.ui.screens.users.UsersScreen
+import ir.hoseinsa.githubusers.presenter.users.UsersScreen
 import ir.hoseinsa.githubusers.ui.theme.GithubUsersTheme
 import kotlinx.coroutines.launch
 

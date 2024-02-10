@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.ui.screens.users
+package ir.hoseinsa.githubusers.presenter.users
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.hoseinsa.githubusers.domain.usecases.UsersDomain
-import ir.hoseinsa.githubusers.ui.datastate.DataState
-import ir.hoseinsa.githubusers.ui.intent.DataIntent
+import ir.hoseinsa.githubusers.presenter.datastate.DataState
+import ir.hoseinsa.githubusers.presenter.intent.DataIntent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn

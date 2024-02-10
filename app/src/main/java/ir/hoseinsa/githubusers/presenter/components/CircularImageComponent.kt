@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.ui.components
+package ir.hoseinsa.githubusers.presenter.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape

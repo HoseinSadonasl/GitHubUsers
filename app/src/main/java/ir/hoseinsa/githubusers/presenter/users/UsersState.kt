@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.ui.screens.users
+package ir.hoseinsa.githubusers.presenter.users
 
 import ir.hoseinsa.githubusers.domain.models.user.UserPresenter
 

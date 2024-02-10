@@ -10,7 +10,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.ContentType
 import io.ktor.http.headers
 import io.ktor.serialization.kotlinx.json.json
-import ir.hoseinsa.githubusers.data.api.UsersApi
+import ir.hoseinsa.githubusers.data.remote.UsersApi
 import org.koin.dsl.module
 
 val dataModule = module {
