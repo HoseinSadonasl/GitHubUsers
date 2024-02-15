@@ -10,7 +10,7 @@ import ir.hoseinsa.githubusers.presenter.datastate.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class UserRepositoryImpl(val api: UsersApi) : UsersRepository {
+class UserRepositoryImpl(private val api: UsersApi) : UsersRepository {
 
     override suspend fun getUsers(): Flow<DataState<List<UserPresenter>>> = flow {
         try {
