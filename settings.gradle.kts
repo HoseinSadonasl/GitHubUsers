@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "GithubUsers"
 include(":app")
- 
+include(":data")

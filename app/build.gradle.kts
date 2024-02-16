@@ -57,5 +57,6 @@ dependencies {
     koin()
     ktor()
     kotlinXSerializationJson()
+    dataModule()
 
 }

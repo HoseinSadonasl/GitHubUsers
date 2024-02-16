@@ -1,4 +1,5 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.project
 
 object Dependencies {
     // AndroidX
@@ -107,5 +108,8 @@ fun DependencyHandler.coil() {
     implementation(Dependencies.coil)
 }
 
+fun DependencyHandler.dataModule() {
+    implementation(project(":data"))
+}
 
 
