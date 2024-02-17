@@ -1,20 +1,14 @@
 plugins {
     `android-library`
     `kotlin-android`
-    id("kotlinx-serialization")
 }
 
 apply<MainGradle>()
 
 android {
-    namespace = "ir.hoseinsa.data"
+    namespace = "ir.hoseinsa.domain"
 }
-
 dependencies {
-    androidX()
-    ktor()
     koin()
     kotlinXSerializationJson()
-
-    domainModule()
 }

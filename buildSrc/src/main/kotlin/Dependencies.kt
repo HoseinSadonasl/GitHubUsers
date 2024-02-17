@@ -112,4 +112,12 @@ fun DependencyHandler.dataModule() {
     implementation(project(":data"))
 }
 
+fun DependencyHandler.domainModule() {
+    implementation(project(":domain"))
+}
+
+fun DependencyHandler.presenterModule() {
+    implementation(project(":presenter"))
+}
+
 
