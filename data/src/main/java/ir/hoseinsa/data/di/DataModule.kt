@@ -3,23 +3,23 @@ package ir.hoseinsa.githubusers.data.di
 import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
-import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
-import io.ktor.client.plugins.plugin
 import io.ktor.client.request.accept
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.http.headers
 import io.ktor.serialization.kotlinx.json.json
+import ir.hoseinsa.data.user.repository.UserRepositoryImpl
+import ir.hoseinsa.domain.user.repository.UserRepository
 import ir.hoseinsa.domain.users.repository.UsersRepository
-import ir.hoseinsa.githubusers.data.remote.UsersApi
-import ir.hoseinsa.githubusers.data.repository.UserRepositoryImpl
+import ir.hoseinsa.githubusers.data.remote.GithubApi
+import ir.hoseinsa.githubusers.data.repository.UsersRepositoryImpl
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
@@ -58,8 +58,9 @@ val dataModule = module {
             headers { ContentType.Application.Json }
         }
     }
-    single<UsersApi> { UsersApi(get()) }
-    single<UsersRepository> { UserRepositoryImpl(get()) }
+    single<GithubApi> { GithubApi(get()) }
+    single<UsersRepository> { UsersRepositoryImpl(get()) }
+    single<UserRepository> { UserRepositoryImpl(get()) }
 }
 
 private const val TIME_OUT = 10_000

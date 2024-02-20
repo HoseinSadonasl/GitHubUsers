@@ -3,7 +3,7 @@ package ir.hoseinsa.githubusers.data.mapper
 import ir.hoseinsa.data.model.UserDto
 import ir.hoseinsa.domain.models.user.User
 
-fun List<UserDto>.getUsersPresenter(): List<User> = map { user -> user.toUser() }
+fun List<UserDto>.getUsers(): List<User> = map { user -> user.toUser() }
 
 fun UserDto.toUser(): User = User(
     avatar_url = avatar_url,
