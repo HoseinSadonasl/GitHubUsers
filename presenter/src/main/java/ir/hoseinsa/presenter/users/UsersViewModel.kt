@@ -5,8 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ir.hoseinsa.domain.usecases.GetUsers
-import ir.hoseinsa.presenter.intent.DataIntent
+import ir.hoseinsa.domain.users.usecases.GetUsers
+import ir.hoseinsa.presenter.users.intent.UsersDataIntent
+import ir.hoseinsa.presenter.users.state.UsersState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class UsersViewModel(private val getUsers: GetUsers) : ViewModel() {
 
-    val dataIntent = Channel<DataIntent>(Channel.UNLIMITED)
+    val dataIntent = Channel<UsersDataIntent>(Channel.UNLIMITED)
     var usersState by mutableStateOf(UsersState())
         private set
 
@@ -25,13 +26,13 @@ class UsersViewModel(private val getUsers: GetUsers) : ViewModel() {
 
     private fun handleIntent() = dataIntent.consumeAsFlow().onEach { dataIntent ->
         when (dataIntent) {
-            is DataIntent.GetUsers -> getUsers()
+            is UsersDataIntent.GetUsers -> getUsers()
         }
     }.launchIn(viewModelScope)
 
 
     fun sendIntent() = viewModelScope.launch {
-        dataIntent.send(DataIntent.GetUsers)
+        dataIntent.send(UsersDataIntent.GetUsers)
     }
 
 

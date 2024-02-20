@@ -7,4 +7,6 @@ class UsersApi(private val client: HttpClient) {
 
     suspend fun getUsers() = client.get("users")
 
+    suspend fun getUser(user: String) = client.get("users/$user")
+
 }

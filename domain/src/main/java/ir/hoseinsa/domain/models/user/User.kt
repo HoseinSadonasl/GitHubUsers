@@ -1,6 +1,6 @@
 package ir.hoseinsa.domain.models.user
 
-data class UserPresenter(
+data class User(
     val avatar_url: String,
     val events_url: String,
     val followers_url: String,

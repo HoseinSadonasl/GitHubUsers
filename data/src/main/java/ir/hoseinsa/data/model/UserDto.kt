@@ -1,10 +1,10 @@
-package ir.hoseinsa.domain.models.user
+package ir.hoseinsa.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserItem(
+data class UserDto(
     @SerialName("avatar_url")
     val avatar_url: String,
     @SerialName("events_url")

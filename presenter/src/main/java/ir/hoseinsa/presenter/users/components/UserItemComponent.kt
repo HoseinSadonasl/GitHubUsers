@@ -1,4 +1,4 @@
-package ir.hoseinsa.presenter.components
+package ir.hoseinsa.presenter.users.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,12 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ir.hoseinsa.domain.models.user.UserPresenter
+import ir.hoseinsa.domain.models.user.User
 import ir.hoseinsa.presenter.R
+import ir.hoseinsa.presenter.components.CircularImageComponent
 
 @Composable
 fun UserItemComponent(
-    userPresenter: UserPresenter
+    userPresenter: User
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,

@@ -17,9 +17,10 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.http.headers
 import io.ktor.serialization.kotlinx.json.json
-import ir.hoseinsa.domain.repository.UsersRepository
+import ir.hoseinsa.domain.users.repository.UsersRepository
 import ir.hoseinsa.githubusers.data.remote.UsersApi
 import ir.hoseinsa.githubusers.data.repository.UserRepositoryImpl
+import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -35,7 +36,9 @@ val dataModule = module {
             }
 
             install(ContentNegotiation) {
-                json()
+                json(Json {
+                    ignoreUnknownKeys = true
+                })
             }
 
             engine {
@@ -53,17 +56,6 @@ val dataModule = module {
                 level = LogLevel.ALL
             }
             headers { ContentType.Application.Json }
-        }.apply {
-            plugin(HttpSend).intercept { request ->
-                val originalCall = execute(request)
-                request.headers[""] = ""
-                if (originalCall.response.status.value !in 100..399) {
-                    execute(request)
-                } else {
-                    originalCall
-                }
-            }
-
         }
     }
     single<UsersApi> { UsersApi(get()) }
