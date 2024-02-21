@@ -14,7 +14,7 @@ class UserRepositoryImpl(private val api: GithubApi) : UserRepository {
     override fun getUser(username: String): Flow<Result<User>> = flow {
         val data = api.getUser(username).body<UserDto>()
         val userData = data.toUser()
-        return@flow try {
+        try {
             emit(Result.success(userData))
         } catch (e: Exception) {
             e.printStackTrace()
