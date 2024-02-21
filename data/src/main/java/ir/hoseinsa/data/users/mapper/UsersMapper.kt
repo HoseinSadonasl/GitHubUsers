@@ -1,11 +1,11 @@
 package ir.hoseinsa.githubusers.data.mapper
 
-import ir.hoseinsa.data.model.UserDto
-import ir.hoseinsa.domain.models.user.User
+import ir.hoseinsa.data.users.model.UsersItemDto
+import ir.hoseinsa.domain.users.model.user.UserItem
 
-fun List<UserDto>.getUsers(): List<User> = map { user -> user.toUser() }
+fun List<UsersItemDto>.toUsersItem(): List<UserItem> = map { user -> user.toUser() }
 
-fun UserDto.toUser(): User = User(
+fun UsersItemDto.toUser(): UserItem = UserItem(
     avatar_url = avatar_url,
     events_url = events_url,
     followers_url = followers_url,

@@ -1,6 +1,6 @@
-package ir.hoseinsa.domain.models.user
+package ir.hoseinsa.domain.users.model.user
 
-data class User(
+data class UserItem(
     val avatar_url: String,
     val events_url: String,
     val followers_url: String,
