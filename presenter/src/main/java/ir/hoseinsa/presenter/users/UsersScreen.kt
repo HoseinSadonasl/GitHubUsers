@@ -37,7 +37,7 @@ fun UsersScreen(
             contentPadding = PaddingValues(8.dp),
             state = rememberLazyListState()
         ) {
-            val users = usersViewModel.usersState.users
+            val users = usersViewModel.usersState.userItems
             if (users == null) {
                 item {
                     Text(text = "No data!")

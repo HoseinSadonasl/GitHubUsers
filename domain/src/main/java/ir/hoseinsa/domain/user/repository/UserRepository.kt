@@ -1,6 +1,5 @@
 package ir.hoseinsa.domain.user.repository
 
-import ir.hoseinsa.domain.models.user.UserItem
 import ir.hoseinsa.domain.user.model.User
 import kotlinx.coroutines.flow.Flow
 

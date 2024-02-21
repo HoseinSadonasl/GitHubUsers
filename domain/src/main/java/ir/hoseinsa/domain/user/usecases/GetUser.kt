@@ -1,6 +1,6 @@
 package ir.hoseinsa.domain.user.usecases
 
-import ir.hoseinsa.domain.models.user.UserItem
+import ir.hoseinsa.domain.users.model.user.UserItem
 import ir.hoseinsa.domain.user.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 

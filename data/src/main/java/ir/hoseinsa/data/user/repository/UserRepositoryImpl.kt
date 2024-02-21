@@ -3,7 +3,6 @@ package ir.hoseinsa.data.user.repository
 import io.ktor.client.call.body
 import ir.hoseinsa.data.user.mapper.toUser
 import ir.hoseinsa.data.user.model.UserDto
-import ir.hoseinsa.domain.models.user.UserItem
 import ir.hoseinsa.domain.user.model.User
 import ir.hoseinsa.domain.user.repository.UserRepository
 import ir.hoseinsa.githubusers.data.remote.GithubApi
