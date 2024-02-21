@@ -9,6 +9,7 @@ import ir.hoseinsa.domain.users.usecases.GetUsers
 import ir.hoseinsa.presenter.users.intent.UsersDataIntent
 import ir.hoseinsa.presenter.users.state.UsersState
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -43,7 +44,7 @@ class UsersViewModel(private val getUsers: GetUsers) : ViewModel() {
                 isLoading = true,
                 error = null
             )
-            getUsers.invoke().onEach { result ->
+            getUsers.invoke().collect { result ->
                 when {
                     result.isSuccess  -> {
                         usersState = usersState.copy(
@@ -61,7 +62,7 @@ class UsersViewModel(private val getUsers: GetUsers) : ViewModel() {
                         )
                     }
                 }
-            }.launchIn(viewModelScope)
+            }
         }
     }
 

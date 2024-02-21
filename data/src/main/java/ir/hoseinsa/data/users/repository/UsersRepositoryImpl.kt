@@ -14,7 +14,7 @@ class UsersRepositoryImpl(private val api: GithubApi) : UsersRepository {
     override suspend fun getUsers(): Flow<Result<List<User>>> = flow {
         val data = api.getUsers().body<List<UserDto>>()
         val usersData = data.getUsers()
-        return@flow try {
+        try {
             emit(Result.success(usersData))
         } catch (e: Exception) {
             e.printStackTrace()
