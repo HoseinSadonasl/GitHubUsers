@@ -1,4 +1,4 @@
-package ir.hoseinsa.data.model
+package ir.hoseinsa.data.users.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
