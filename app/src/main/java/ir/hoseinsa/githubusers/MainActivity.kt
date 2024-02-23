@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import ir.hoseinsa.presenter.users.UsersScreen
 import ir.hoseinsa.githubusers.ui.theme.GithubUsersTheme
+import ir.hoseinsa.presenter.navigation.AppNavHost
+import ir.hoseinsa.presenter.navigation.NavItem
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -57,12 +59,10 @@ class MainActivity : ComponentActivity() {
                     },
                     snackbarHost = { SnackbarHost(hostState = snackBarState) }
                 ) { innerPadding ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    )
-                    UsersScreen(showSnackBar = { message ->
+                    AppNavHost(
+                        modifier = Modifier.padding(innerPadding),
+                        startDestination = NavItem.UsersScreen.route,
+                        showSnackBar = { message ->
                         scope.launch {
                             snackBarState.showSnackbar(
                                 message = message,

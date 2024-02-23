@@ -35,6 +35,7 @@ fun githubClient() = HttpClient(Android) {
     install(ContentNegotiation) {
         json(Json {
             ignoreUnknownKeys = true
+            coerceInputValues = true
         })
     }
 

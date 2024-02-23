@@ -13,11 +13,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ir.hoseinsa.presenter.users.components.UserItemComponent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun UsersScreen(
+    navigateToUserDetail: (String) -> Unit,
     usersViewModel: UsersViewModel = koinViewModel(),
     showSnackBar: (String) -> Unit = {}
 ) {
@@ -45,7 +47,9 @@ fun UsersScreen(
             } else {
                 items(users.size) {
                     users.forEach { user ->
-                        UserItemComponent(user)
+                        UserItemComponent(
+                            userItemPresenter = user,
+                            onUserClick = { navigateToUserDetail(it) })
                     }
                 }
             }

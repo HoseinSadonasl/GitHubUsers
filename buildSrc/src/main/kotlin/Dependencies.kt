@@ -15,6 +15,7 @@ object Dependencies {
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
     // Compose
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigationCompose}"
     const val lifeCycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
     const val composeMaterial = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
     const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
@@ -69,6 +70,7 @@ fun DependencyHandler.unitTest() {
 fun DependencyHandler.compose() {
     implementation(Dependencies.androidXCoreKtx)
     implementation(Dependencies.activityCompose)
+    implementation(Dependencies.navigationCompose)
     implementation(Dependencies.lifeCycleRuntimeKtx)
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeRuntime)

@@ -18,6 +18,7 @@ object Versions {
     // Compose
     const val compose = "1.6.1"
     const val activityCompose = "1.8.2"
+    const val navigationCompose = "2.7.7"
     const val composeMaterial3 = "1.2.0"
     const val composeCompiler = "1.5.9"
     // Koin

@@ -8,19 +8,26 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ir.hoseinsa.presenter.components.CircularImageComponent
 import ir.hoseinsa.presenter.user.components.DetailsSection
+import ir.hoseinsa.presenter.user.intent.UserDataIntent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun DetailsScreen(
+    username: String?,
     userViewModel: UserViewModel = koinViewModel(),
     showSnackBar: (String) -> Unit = {}
 ) {
     val userState = userViewModel.userState
+
+    LaunchedEffect(key1 = !username.isNullOrBlank()) {
+        userViewModel.dataIntent.send(UserDataIntent.GetUser(username!!))
+    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
