@@ -41,7 +41,7 @@ class UserViewModel(private val getUser: GetUser): ViewModel() {
                     result.isSuccess -> {
                         userState = userState.copy(
                             isLoading = false,
-                            userItem = result.getOrNull()
+                            user = result.getOrNull()
                         )
                     }
                     result.isFailure -> {

@@ -10,12 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import ir.hoseinsa.domain.users.model.user.UserItem
+import ir.hoseinsa.domain.user.model.User
 
 @Composable
-fun InformationSection(
+fun DetailsSection(
     modifier: Modifier = Modifier,
-    userItem: UserItem
+    user: User
 ) {
     Column(
         modifier = modifier
@@ -23,8 +23,8 @@ fun InformationSection(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = userItem.login, style = MaterialTheme.typography.titleLarge)
-        Text(text = userItem.login, style = MaterialTheme.typography.titleMedium)
-        Text(text = "Followers: ${userItem.followers_url}", style = MaterialTheme.typography.titleSmall)
+        Text(text = user.login, style = MaterialTheme.typography.titleLarge)
+        Text(text = user.login, style = MaterialTheme.typography.titleMedium)
+        Text(text = "Followers: ${user.followers}" + "Followings: ${user.following}", style = MaterialTheme.typography.titleSmall)
     }
 }

@@ -1,9 +1,9 @@
 package ir.hoseinsa.presenter.user.state
 
-import ir.hoseinsa.domain.users.model.user.UserItem
+import ir.hoseinsa.domain.user.model.User
 
 data class UserState(
     val isLoading: Boolean = false,
-    val userItem: UserItem? = null,
+    val user: User? = null,
     val error: String? = null
 )
