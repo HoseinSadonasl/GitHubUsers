@@ -25,7 +25,7 @@ fun DetailsScreen(
 ) {
     val userState = userViewModel.userState
 
-    LaunchedEffect(key1 = !username.isNullOrBlank()) {
+    LaunchedEffect(key1 = username) {
         userViewModel.dataIntent.send(UserDataIntent.GetUser(username!!))
     }
     Column(
