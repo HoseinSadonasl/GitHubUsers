@@ -1,6 +1,7 @@
 package ir.hoseinsa.data.user.repository
 
 import io.ktor.client.call.body
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.isSuccess
 import ir.hoseinsa.data.user.mapper.toUser
 import ir.hoseinsa.data.user.model.UserDto
@@ -15,8 +16,8 @@ class UserRepositoryImpl(private val api: GithubApi) : UserRepository {
     override fun getUser(username: String): Flow<Result<User>> = flow {
         val response = api.getUser(username)
         try {
-            when {
-                response.status.isSuccess() -> {
+            when(response.status) {
+                HttpStatusCode.OK -> {
                     val data = response.body<UserDto>()
                     val user = data.toUser()
                     emit(Result.success(user))
