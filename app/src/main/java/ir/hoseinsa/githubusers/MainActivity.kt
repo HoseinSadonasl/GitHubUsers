@@ -3,8 +3,6 @@ package ir.hoseinsa.githubusers
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
@@ -17,11 +15,12 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import ir.hoseinsa.presenter.users.UsersScreen
 import ir.hoseinsa.githubusers.ui.theme.GithubUsersTheme
 import ir.hoseinsa.presenter.navigation.AppNavHost
 import ir.hoseinsa.presenter.navigation.NavItem
@@ -33,12 +32,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GithubUsersTheme {
+                var screenTitle by remember { mutableStateOf("GitHubUsers") }
                 val scope = rememberCoroutineScope()
                 val snackBarState = remember { SnackbarHostState() }
                 Scaffold(
                     topBar = {
                         TopAppBar(
-                            title = { Text(text = stringResource(id = R.string.app_name)) },
+                            title = { Text(text = screenTitle) },
                             actions = {
                                 IconButton(
                                     onClick = {
@@ -62,6 +62,7 @@ class MainActivity : ComponentActivity() {
                     AppNavHost(
                         modifier = Modifier.padding(innerPadding),
                         startDestination = NavItem.UsersScreen.route,
+                        screenTitle = { title-> title?.let { screenTitle = it } },
                         showSnackBar = { message ->
                         scope.launch {
                             snackBarState.showSnackbar(

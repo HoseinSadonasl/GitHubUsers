@@ -11,23 +11,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import ir.hoseinsa.presenter.components.CircularImageComponent
 import ir.hoseinsa.presenter.user.components.DetailsSection
 import ir.hoseinsa.presenter.user.intent.UserDataIntent
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun DetailsScreen(
     username: String?,
     userViewModel: UserViewModel = koinViewModel(),
-    showSnackBar: (String) -> Unit = {}
+    screenTitle: (String?) -> Unit = {},
+    showSnackBar: (String) -> Unit = {},
 ) {
     val userState = userViewModel.userState
 
     LaunchedEffect(key1 = username) {
         userViewModel.dataIntent.send(UserDataIntent.GetUser(username!!))
+        screenTitle(username)
     }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()

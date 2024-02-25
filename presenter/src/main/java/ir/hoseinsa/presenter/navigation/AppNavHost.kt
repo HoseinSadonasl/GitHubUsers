@@ -14,17 +14,23 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String,
+    screenTitle: (String?) -> Unit = {},
     showSnackBar: (String) -> Unit
 ) {
     NavHost(
         modifier = modifier,
-        navController = navController, startDestination = startDestination) {
+        navController = navController, startDestination = startDestination
+    ) {
         composable("UsersScreen") {
             UsersScreen(navigateToUserDetail = { navController.navigate("UserScreen/$it") })
         }
         composable("UserScreen/{username}") {
             val username = it.arguments?.getString("username")
-            DetailsScreen(username = username, showSnackBar = showSnackBar)
+            DetailsScreen(
+                username = username,
+                screenTitle = { title -> screenTitle(title) },
+                showSnackBar = showSnackBar
+            )
         }
     }
 }
