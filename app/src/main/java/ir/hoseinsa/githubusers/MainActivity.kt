@@ -27,42 +27,18 @@ import ir.hoseinsa.presenter.navigation.NavItem
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             GithubUsersTheme {
-                var screenTitle by remember { mutableStateOf("GitHubUsers") }
                 val scope = rememberCoroutineScope()
                 val snackBarState = remember { SnackbarHostState() }
                 Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = { Text(text = screenTitle) },
-                            actions = {
-                                IconButton(
-                                    onClick = {
-                                        scope.launch {
-                                            snackBarState.showSnackbar(
-                                                message = "Hosein sadon asl"
-                                            )
-                                        }
-                                    },
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Outlined.Info,
-                                        contentDescription = "Information"
-                                    )
-                                }
-                            },
-                        )
-                    },
                     snackbarHost = { SnackbarHost(hostState = snackBarState) }
                 ) { innerPadding ->
                     AppNavHost(
                         modifier = Modifier.padding(innerPadding),
                         startDestination = NavItem.UsersScreen.route,
-                        screenTitle = { title-> title?.let { screenTitle = it } },
                         showSnackBar = { message ->
                         scope.launch {
                             snackBarState.showSnackbar(

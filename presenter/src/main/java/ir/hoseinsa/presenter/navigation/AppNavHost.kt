@@ -14,7 +14,6 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String,
-    screenTitle: (String?) -> Unit = {},
     showSnackBar: (String) -> Unit
 ) {
     NavHost(
@@ -28,8 +27,10 @@ fun AppNavHost(
             val username = it.arguments?.getString("username")
             DetailsScreen(
                 username = username,
-                screenTitle = { title -> screenTitle(title) },
-                showSnackBar = showSnackBar
+                showSnackBar = showSnackBar,
+                navigateBack = {
+                    navController.popBackStack()
+                }
             )
         }
     }
