@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 
 class UsersRepositoryImpl(private val api: GithubApi) : UsersRepository {
 
-    override suspend fun getUsers(): Flow<Result<List<UserItem>>> = flow {
+    override fun getUsers(): Flow<Result<List<UserItem>>> = flow {
         val response = api.getUsers()
         try {
             when(response.status) {
