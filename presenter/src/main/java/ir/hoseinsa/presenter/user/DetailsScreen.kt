@@ -1,7 +1,9 @@
 package ir.hoseinsa.presenter.user
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -46,12 +48,16 @@ fun DetailsScreen(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             if (userState.isLoading) {
-                CircularProgressIndicator()
+                Box(
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
             } else if (userState.user != null) {
                 CircularImageComponent(
                     imageUrl = userState.user.avatarUrl, modifier = Modifier
@@ -59,7 +65,9 @@ fun DetailsScreen(
                         .height(180.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                DetailsSection(user = userState.user)
+                DetailsSection(
+                    user = userState.user,
+                )
             } else if (!userState.error.isNullOrBlank()) {
                 showSnackBar(userState.error)
             }

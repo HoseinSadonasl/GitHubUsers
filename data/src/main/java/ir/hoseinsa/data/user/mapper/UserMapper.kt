@@ -5,19 +5,9 @@ import ir.hoseinsa.domain.user.model.User
 
 fun UserDto.toUser(): User = User(
     avatarUrl = avatarUrl,
-    bio = bio ?: "",
-    company = company ?: "",
-    createdAt = createdAt,
-    email = email ?: "",
+    bio = bio,
     followers = followers,
     following = following,
-    hireable = hireable,
-    id = id,
-    location = location ?: "",
     login = login,
-    name = name,
-    nodeId = nodeId,
-    publicGists = publicGists,
-    publicRepos = publicRepos
-
+    name = name
 )

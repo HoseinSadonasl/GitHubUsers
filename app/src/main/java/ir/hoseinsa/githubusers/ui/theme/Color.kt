@@ -2,10 +2,11 @@ package ir.hoseinsa.githubusers.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val GreenGithubDark = Color(0xff34D058)
+val GreenGithubLighterDark = Color(0xFFB6E5C1)
+val SurfaceDark = Color(0xFF262A31)
+val GrayGithubDark = Color(0xff161B22)
 
-val Purple40 = Color(0xFF303F9F)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val GreenGithub = Color(0xff34D058)
+val GreenGithubLighter = Color(0xFF657869)
+val SurfaceLight = Color(0xFFEFF0F3)
