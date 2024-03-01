@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.data.mapper
+package ir.hoseinsa.data.users.mapper
 
 import ir.hoseinsa.data.users.model.UsersItemDto
 import ir.hoseinsa.domain.users.model.user.UserItem

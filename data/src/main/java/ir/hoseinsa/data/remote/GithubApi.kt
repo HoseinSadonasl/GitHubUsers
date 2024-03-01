@@ -1,4 +1,4 @@
-package ir.hoseinsa.githubusers.data.remote
+package ir.hoseinsa.data.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

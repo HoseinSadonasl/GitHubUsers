@@ -20,7 +20,7 @@ import kotlinx.serialization.json.Json
 
 private const val TIME_OUT = 10_000
 private const val TAG_KTOR_LOGGER = "ktor_logger:"
-const val BASE_DOMAIN = "api.github.com"
+private const val BASE_DOMAIN = "api.github.com"
 
 fun githubClient() = HttpClient(Android) {
     defaultRequest {
