@@ -20,11 +20,15 @@ fun AppNavHost(
         modifier = modifier,
         navController = navController, startDestination = startDestination
     ) {
-        composable("UsersScreen") {
-            UsersScreen(navigateToUserDetail = { navController.navigate("UserScreen/$it") })
+        composable(NavItem.UsersScreen.route) {
+            UsersScreen(
+                navigateToUserDetail = {
+                    navController.navigate(NavItem.UserDetailsScreen.createRoute(it))
+                }
+            )
         }
-        composable("UserScreen/{username}") {
-            val username = it.arguments?.getString("username")
+        composable(NavItem.UserDetailsScreen.route) {
+            val username = it.arguments?.getString(NavItem.USERNAME)
             DetailsScreen(
                 username = username,
                 showSnackBar = showSnackBar,

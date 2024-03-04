@@ -18,7 +18,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 
-private const val TIME_OUT = 10_000
+private const val TIME_OUT = 30_000
 private const val TAG_KTOR_LOGGER = "ktor_logger:"
 private const val BASE_DOMAIN = "api.github.com"
 
@@ -42,6 +42,7 @@ fun githubClient() = HttpClient(Android) {
     engine {
         connectTimeout = TIME_OUT
         socketTimeout = TIME_OUT
+
     }
 
     install(Logging) {
