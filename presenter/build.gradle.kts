@@ -25,6 +25,7 @@ dependencies {
     compose()
     coil()
     koin()
+    pagingCompose()
 
     domainModule()
 }

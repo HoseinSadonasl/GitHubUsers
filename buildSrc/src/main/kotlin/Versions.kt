@@ -33,4 +33,8 @@ object Versions {
 
     // Coil
     const val coil = "2.5.0"
+
+    // Paging 3
+    const val pagingRuntime = "3.2.1"
+    const val pagingCompose = "3.3.0-alpha03"
 }

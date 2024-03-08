@@ -5,7 +5,8 @@ import io.ktor.client.request.get
 
 class GithubApi(private val client: HttpClient) {
 
-    suspend fun getUsers() = client.get("users")
+    suspend fun getUsers(since: Int, perPage: Int) =
+        client.get("users??since=$since&per_page=$perPage")
 
     suspend fun getUser(user: String) = client.get("users/$user")
 

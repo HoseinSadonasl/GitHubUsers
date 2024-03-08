@@ -49,6 +49,10 @@ object Dependencies {
     // Coil
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
 
+    // Paging 3
+    const val pagingRuntime = "androidx.paging:paging-runtime:${Versions.pagingRuntime}"
+    const val pagingCompose = "androidx.paging:paging-compose:${Versions.pagingCompose}"
+
 }
 
 fun DependencyHandler.androidX() {
@@ -90,6 +94,13 @@ fun DependencyHandler.koin() {
 
 fun DependencyHandler.kotlinCoroutines() {
     implementation(Dependencies.coroutines)
+}
+
+fun DependencyHandler.pagingRuntime() {
+    implementation(Dependencies.pagingRuntime)
+}
+fun DependencyHandler.pagingCompose() {
+    implementation(Dependencies.pagingCompose)
 }
 
 fun DependencyHandler.kotlinXSerializationJson() {

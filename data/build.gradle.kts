@@ -14,6 +14,7 @@ dependencies {
     androidX()
     ktor()
     koin()
+    pagingRuntime()
     kotlinXSerializationJson()
 
     domainModule()

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import ir.hoseinsa.domain.users.usecases.GetUsers
 import ir.hoseinsa.presenter.users.intent.UsersDataIntent
 import ir.hoseinsa.presenter.users.state.UsersState
@@ -39,29 +40,8 @@ class UsersViewModel(private val getUsers: GetUsers) : ViewModel() {
     private fun getUsers() {
         viewModelScope.launch {
             usersState = usersState.copy(
-                userItems = null,
-                isLoading = true,
-                error = null
+                userItems = getUsers.invoke().cachedIn(viewModelScope)
             )
-            getUsers.invoke().collect { result ->
-                when {
-                    result.isSuccess  -> {
-                        usersState = usersState.copy(
-                            userItems = result.getOrNull() ,
-                            isLoading = false,
-                            error = null
-                        )
-                    }
-
-                    result.isFailure -> {
-                        usersState = usersState.copy(
-                            userItems = null,
-                            isLoading = false,
-                            error = result.exceptionOrNull()?.message
-                        )
-                    }
-                }
-            }
         }
     }
 
