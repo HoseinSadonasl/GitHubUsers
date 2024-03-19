@@ -3,16 +3,10 @@ package ir.hoseinsa.data.users.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import io.ktor.client.call.body
-import io.ktor.http.HttpStatusCode
-import ir.hoseinsa.data.users.model.UsersItemDto
 import ir.hoseinsa.domain.users.model.user.UserItem
 import ir.hoseinsa.domain.users.repository.UsersRepository
-import ir.hoseinsa.data.users.mapper.toUsersItem
 import ir.hoseinsa.data.remote.GithubApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 
 class UsersRepositoryImpl(private val githubApi: GithubApi) : UsersRepository {
 

@@ -2,7 +2,7 @@ package ir.hoseinsa.data.user.repository
 
 import io.ktor.client.call.body
 import io.ktor.http.HttpStatusCode
-import ir.hoseinsa.data.user.mapper.toUser
+import ir.hoseinsa.data.user.mapper.toDomain
 import ir.hoseinsa.data.user.model.UserDto
 import ir.hoseinsa.domain.user.model.User
 import ir.hoseinsa.domain.user.repository.UserRepository
@@ -18,7 +18,7 @@ class UserRepositoryImpl(private val api: GithubApi) : UserRepository {
             when(response.status) {
                 HttpStatusCode.OK -> {
                     val data = response.body<UserDto>()
-                    val user = data.toUser()
+                    val user = data.toDomain()
                     emit(Result.success(user))
                 }
             }

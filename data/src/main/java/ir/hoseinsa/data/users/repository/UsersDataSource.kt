@@ -7,7 +7,7 @@ import io.ktor.client.call.body
 import io.ktor.client.network.sockets.ConnectTimeoutException
 import io.ktor.client.plugins.ResponseException
 import ir.hoseinsa.data.remote.GithubApi
-import ir.hoseinsa.data.users.mapper.toUsersItem
+import ir.hoseinsa.data.users.mapper.toDomain
 import ir.hoseinsa.data.users.model.UsersItemDto
 import ir.hoseinsa.domain.users.model.user.UserItem
 
@@ -24,7 +24,7 @@ class UsersDataSource(
         )
             Log.e("::load", "load: ${response.status}", )
             val data = response.body<List<UsersItemDto>>()
-            val usersData = data.toUsersItem()
+            val usersData = data.toDomain()
             LoadResult.Page(
                 data = usersData,
                 prevKey = null,
