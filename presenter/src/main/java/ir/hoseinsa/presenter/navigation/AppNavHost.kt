@@ -24,6 +24,9 @@ fun AppNavHost(
             UsersScreen(
                 navigateToUserDetail = {
                     navController.navigate(NavItem.UserDetailsScreen.createRoute(it))
+                },
+                showSnackBar = {
+                    showSnackBar(it)
                 }
             )
         }

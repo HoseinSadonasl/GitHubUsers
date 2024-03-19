@@ -1,26 +1,19 @@
 package ir.hoseinsa.presenter.users
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.magnifier
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import ir.hoseinsa.presenter.components.GitHubUsersTopAppBar
+import ir.hoseinsa.presenter.users.components.NoInternetConnectionComponent
 import ir.hoseinsa.presenter.users.components.UserItemComponent
 import ir.hoseinsa.presenter.users.components.UserItemComponentLoading
 import org.koin.androidx.compose.koinViewModel
@@ -31,6 +24,7 @@ fun UsersScreen(
     usersViewModel: UsersViewModel = koinViewModel(),
     showSnackBar: (String) -> Unit = {}
 ) {
+    val state = usersViewModel.usersState
     val usersListState = usersViewModel.usersState.userItems?.collectAsLazyPagingItems()
     val refreshLoadState = usersListState?.loadState?.refresh
     LaunchedEffect(key1 = true) {
@@ -50,36 +44,42 @@ fun UsersScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            LazyColumn {
-                showSnackBar("Loaded")
-                items(usersListState?.itemCount ?: 0) {
-                    val item = usersListState?.get(it)
-                    item?.let {
-                        UserItemComponent(
-                            userItem = item,
-                            onUserClick = { navigateToUserDetail(it) }
-                        )
-                    }
+            when {
+                state.isOnline.not() -> {
+                    NoInternetConnectionComponent()
                 }
-
-                when (refreshLoadState) {
-                    is LoadState.Loading -> {
-                        items(12) {
-                            UserItemComponentLoading()
+                else -> {
+                    LazyColumn {
+                        items(usersListState?.itemCount ?: 0) {
+                            val item = usersListState?.get(it)
+                            item?.let {
+                                UserItemComponent(
+                                    userItem = item,
+                                    onUserClick = { navigateToUserDetail(it) }
+                                )
+                            }
                         }
-                    }
 
-                    is LoadState.Error -> {
-                        showSnackBar("ERROR")
-                    }
+                        when (refreshLoadState) {
+                            is LoadState.Loading -> {
+                                items(12) {
+                                    UserItemComponentLoading()
+                                }
+                            }
 
-                    is LoadState.NotLoading -> {
-                        showSnackBar("NotLoading")
-                    }
+                            is LoadState.Error -> {
+                                showSnackBar(refreshLoadState.error.message ?: "An error occurred")
+                            }
 
-                    else -> {}
+                            is LoadState.NotLoading -> {
+                                showSnackBar("NotLoading")
+                            }
+
+                            else -> {}
+                        }
+
+                    }
                 }
-
             }
         }
     }

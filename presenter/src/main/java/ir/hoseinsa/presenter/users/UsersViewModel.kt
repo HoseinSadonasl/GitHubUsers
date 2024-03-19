@@ -9,6 +9,7 @@ import androidx.paging.cachedIn
 import ir.hoseinsa.domain.users.usecases.GetUsers
 import ir.hoseinsa.presenter.users.intent.UsersDataIntent
 import ir.hoseinsa.presenter.users.state.UsersState
+import ir.hoseinsa.presenter.utils.ConnectionUtils.isOnline
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
@@ -33,14 +34,17 @@ class UsersViewModel(private val getUsers: GetUsers) : ViewModel() {
 
 
     fun sendIntent() = viewModelScope.launch {
-        dataIntent.send(UsersDataIntent.GetUsers)
+        if (isOnline()) dataIntent.send(UsersDataIntent.GetUsers)
+        else usersState = usersState.copy(
+            isOnline = false
+        )
     }
-
 
     private fun getUsers() {
         viewModelScope.launch {
+            val items = getUsers.invoke().cachedIn(viewModelScope)
             usersState = usersState.copy(
-                userItems = getUsers.invoke().cachedIn(viewModelScope)
+                userItems = items
             )
         }
     }
