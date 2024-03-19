@@ -23,6 +23,7 @@ fun AppNavHost(
         composable(NavItem.UsersScreen.route) {
             UsersScreen(
                 navigateToUserDetail = {
+                    navController.popBackStack()
                     navController.navigate(NavItem.UserDetailsScreen.createRoute(it))
                 },
                 showSnackBar = {
