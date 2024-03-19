@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.flow
 class UserRepositoryImpl(private val api: GithubApi) : UserRepository {
 
     override fun getUser(username: String): Flow<Result<User>> = flow {
-        val response = api.getUser(username)
         try {
+            val response = api.getUser(username)
             when(response.status) {
                 HttpStatusCode.OK -> {
                     val data = response.body<UserDto>()
