@@ -6,46 +6,32 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.hoseinsa.domain.user.usecases.GetUser
-import ir.hoseinsa.presenter.user.intent.UserDataIntent
+import ir.hoseinsa.presenter.user.intent.UserDetailsScreenEvent
 import ir.hoseinsa.presenter.user.state.UserState
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.consumeAsFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val getUser: GetUser): ViewModel() {
 
-    val dataIntent = Channel<UserDataIntent>(Channel.UNLIMITED)
-    var userState by mutableStateOf(UserState())
+    var state by mutableStateOf(UserState())
         private set
 
-    init {
-        handleIntent()
+    fun onEvent(event: UserDetailsScreenEvent) = when (event) {
+        is UserDetailsScreenEvent.GetUser -> getUser(event.username)
     }
-
-    private fun handleIntent() = dataIntent.consumeAsFlow().onEach { dataIntent ->
-        when (dataIntent) {
-            is UserDataIntent.GetUser -> getUser(dataIntent.username)
-        }
-    }.launchIn(viewModelScope)
 
 
     private fun getUser(username: String) {
-        userState = userState.copy(
-            isLoading = true
-        )
         viewModelScope.launch {
             getUser.invoke(username).collect { result ->
                 when {
                     result.isSuccess -> {
-                        userState = userState.copy(
+                        state = state.copy(
                             isLoading = false,
                             user = result.getOrNull()
                         )
                     }
                     result.isFailure -> {
-                        userState = userState.copy(
+                        state = state.copy(
                             isLoading = false,
                             error = result.exceptionOrNull()?.message
                         )

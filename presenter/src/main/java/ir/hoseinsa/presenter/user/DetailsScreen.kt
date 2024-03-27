@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -20,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import ir.hoseinsa.presenter.components.CircularImageComponent
 import ir.hoseinsa.presenter.components.GitHubUsersTopAppBar
 import ir.hoseinsa.presenter.user.components.DetailsSection
-import ir.hoseinsa.presenter.user.intent.UserDataIntent
+import ir.hoseinsa.presenter.user.intent.UserDetailsScreenEvent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -30,10 +29,12 @@ fun DetailsScreen(
     showSnackBar: (String) -> Unit = {},
     navigateBack: () -> Unit
 ) {
-    val userState = userViewModel.userState
+    val state = userViewModel.state
 
     LaunchedEffect(key1 = username) {
-        userViewModel.dataIntent.send(UserDataIntent.GetUser(username!!))
+        username?.let {
+            userViewModel.onEvent(UserDetailsScreenEvent.GetUser(username))
+        }
     }
 
     Scaffold(
@@ -52,24 +53,24 @@ fun DetailsScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            if (userState.isLoading) {
+            if (state.isLoading) {
                 Box(
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()
                 }
-            } else if (userState.user != null) {
+            } else if (state.user != null) {
                 CircularImageComponent(
-                    imageUrl = userState.user.avatarUrl, modifier = Modifier
+                    imageUrl = state.user.avatarUrl, modifier = Modifier
                         .width(180.dp)
                         .height(180.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 DetailsSection(
-                    user = userState.user,
+                    user = state.user,
                 )
-            } else if (!userState.error.isNullOrBlank()) {
-                showSnackBar(userState.error)
+            } else if (!state.error.isNullOrBlank()) {
+                showSnackBar(state.error)
             }
         }
     }
