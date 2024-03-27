@@ -18,6 +18,7 @@ import ir.hoseinsa.presenter.components.GitHubUsersTopAppBar
 import ir.hoseinsa.presenter.users.components.MessageComponent
 import ir.hoseinsa.presenter.users.components.UserItemComponent
 import ir.hoseinsa.presenter.users.components.UserItemComponentLoading
+import ir.hoseinsa.presenter.users.intent.UsersScreenEvent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -25,11 +26,11 @@ fun UsersScreen(
     navigateToUserDetail: (String) -> Unit,
     usersViewModel: UsersViewModel = koinViewModel(),
 ) {
-    val state = usersViewModel.usersState
-    val usersListState = usersViewModel.usersState.userItems?.collectAsLazyPagingItems()
+    val state = usersViewModel.state
+    val usersListState = usersViewModel.state.userItems?.collectAsLazyPagingItems()
     val refreshLoadState = usersListState?.loadState?.refresh
     LaunchedEffect(key1 = true) {
-        usersViewModel.sendIntent()
+        usersViewModel.onEvent(UsersScreenEvent.GetUsers)
     }
     Scaffold(
         topBar = {
