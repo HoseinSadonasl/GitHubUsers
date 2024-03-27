@@ -10,10 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import ir.hoseinsa.presenter.R
 import ir.hoseinsa.presenter.components.GitHubUsersTopAppBar
-import ir.hoseinsa.presenter.users.components.NoInternetConnectionComponent
+import ir.hoseinsa.presenter.users.components.MessageComponent
 import ir.hoseinsa.presenter.users.components.UserItemComponent
 import ir.hoseinsa.presenter.users.components.UserItemComponentLoading
 import org.koin.androidx.compose.koinViewModel
@@ -22,7 +24,6 @@ import org.koin.androidx.compose.koinViewModel
 fun UsersScreen(
     navigateToUserDetail: (String) -> Unit,
     usersViewModel: UsersViewModel = koinViewModel(),
-    showSnackBar: (String) -> Unit = {}
 ) {
     val state = usersViewModel.usersState
     val usersListState = usersViewModel.usersState.userItems?.collectAsLazyPagingItems()
@@ -46,7 +47,10 @@ fun UsersScreen(
         ) {
             when {
                 state.isOnline.not() -> {
-                    NoInternetConnectionComponent()
+                    MessageComponent(
+                        title = stringResource(R.string.disconnected_all),
+                        description = stringResource(R.string.check_your_connection_all)
+                    )
                 }
                 else -> {
                     LazyColumn {
@@ -68,7 +72,12 @@ fun UsersScreen(
                             }
 
                             is LoadState.Error -> {
-                                showSnackBar(refreshLoadState.error.message ?: "An error occurred")
+                                item {
+                                    MessageComponent(
+                                        title = "An error occurred",
+                                        description = refreshLoadState.error.message ?: "That's all what i know :("
+                                    )
+                                }
                             }
 
                             else -> {}

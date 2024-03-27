@@ -25,9 +25,6 @@ fun AppNavHost(
                 navigateToUserDetail = {
                     navController.navigate(NavItem.UserDetailsScreen.createRoute(it))
                 },
-                showSnackBar = {
-                    showSnackBar(it)
-                }
             )
         }
         composable(NavItem.UserDetailsScreen.route) {

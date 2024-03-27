@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="disconnected_all">Disconnected!</string>
+    <string name="check_your_connection_all">Please check your internet connection!!</string>
+</resources>
