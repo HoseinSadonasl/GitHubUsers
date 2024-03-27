@@ -71,10 +71,6 @@ fun UsersScreen(
                                 showSnackBar(refreshLoadState.error.message ?: "An error occurred")
                             }
 
-                            is LoadState.NotLoading -> {
-                                showSnackBar("NotLoading")
-                            }
-
                             else -> {}
                         }
 
